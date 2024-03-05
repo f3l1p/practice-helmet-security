@@ -19,10 +19,9 @@ app.use(helmet.noCache());
 
 const directives = {
   defaultSrc: ["'self'"],
-  scriptSrc: "self",
-  domain: "trusted-cdn.com",
+  scriptSrc: ["'self'", 'trusted-cdn.com'],
 };
-app.use(helmet.contentSecurityPolicy(directives));
+app.use(helmet.contentSecurityPolicy({ directives: directives }));
 
 module.exports = app;
 const api = require("./server.js");
