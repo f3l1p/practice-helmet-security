@@ -17,6 +17,13 @@ app.use(
 app.use(helmet.dnsPrefetchControl());
 app.use(helmet.noCache());
 
+const directives = {
+  defaultSrc: ["'self'"],
+  scriptSrc: "self",
+  domain: "trusted-cdn.com",
+};
+app.use(helmet.contentSecurityPolicy(directives));
+
 module.exports = app;
 const api = require("./server.js");
 app.use(express.static("public"));
